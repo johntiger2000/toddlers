@@ -118,7 +118,10 @@ class World {
         queue.enqueue(room)
       })
     }
-    Some(current)
+    current match {
+      case `source` => None
+      case _ => Some(current)
+    }
   }
   
 }
