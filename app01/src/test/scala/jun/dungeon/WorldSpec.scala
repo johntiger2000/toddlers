@@ -5,7 +5,19 @@ import jun.dungeon.Direction._
 
 class WorldSpec extends UnitSpec {
   
-  "The world" should "move player into next room in the direction" in {
+  "The world" should "have 9 rooms" in {
+    var world = new World
+    world.rooms should have size 9
+  }
+  
+  it should "have dragon in farthest room" in {
+    var world = new World
+    world.player.current = world.rooms(0)
+    world.dragon = world.initDragon
+    assert(world.dragon.current === world.rooms(6))
+  }
+  
+  it should "move player into next room in the direction" in {
     var world = new World
     world.player.current = world.rooms(0)
     world.movePlayer(East)
@@ -27,7 +39,7 @@ class WorldSpec extends UnitSpec {
     world.dragon.current = world.rooms(1)
     world.movePlayer(East)
     assert(world.player.current === world.rooms(1))
-    assert(world.player.gem === 101)
+    world.player.gem should be (101)
   }
   
   it should "have player lost all gem and re-inited when dragon hit player" in {

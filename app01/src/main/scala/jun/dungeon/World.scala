@@ -30,11 +30,9 @@ class World {
   def moveDragon(): Boolean = {
     getNextRoom(dragon.current, player.current) match {
       case Some(room) => {
-        if (room != player.current) {
-          dragon.current = room
-        } else {
-          player = initPlayer
-          dragon = initDragon
+        player.current match {
+          case `room` => player = initPlayer; dragon = initDragon
+          case _ => dragon.current = room
         }
         true
       }
@@ -92,8 +90,8 @@ class World {
       .foreach(e => {
         var room = e.get
         visited(room.id) = visited(current.id) :+ room
-        room.id match {
-          case dest.id => return visited(room.id).headOption
+        room match {
+          case `dest` => return visited(room.id).headOption
           case _ => queue.enqueue(room)
         }
       })
