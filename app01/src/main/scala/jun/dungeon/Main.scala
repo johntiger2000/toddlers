@@ -4,7 +4,7 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     
-    var world = new World
+    var world = World
     println("World created.")
     var step = 0
     while (true) {
