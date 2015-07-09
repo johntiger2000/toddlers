@@ -7,12 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Main {
-
-	public static void main(String[] args) {
-		int ret = new Main().climbStairs(4);
-		System.out.println(ret);
-	}
-
+	
     public boolean anagram(String s, String t) {
         // write your code here
         if (s == null || t == null || s.length() != t.length()) {
